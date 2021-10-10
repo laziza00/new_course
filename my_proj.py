@@ -20,6 +20,7 @@ class Project:
 
     def entering_the_system(self):
         self.initial_message()
+        reg_log = input("Enter [1/2]>>>: ")
     def log_in(self):
         pass
     def registration(self):
