@@ -22,7 +22,12 @@ class Project:
         self.initial_message()
         reg_log = input("Enter [1/2]>>>: ")
     def log_in(self):
-        pass
+        print("""You are welcome
+                 [1] - Update login
+                 [2] - Update password
+                 [3] - Delete account 
+                 [4] - Log out   
+            """)
     def registration(self):
         pass
     def update_login(self):
