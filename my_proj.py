@@ -146,7 +146,9 @@ class Project:
                      """)
             new_login = input("Login: ").strip().lower()
 
-
+        mycursor = mydb.cursor()
+        mycursor.execute(f"update kurs_ishi set login = '{new_login}' where login = '{self.login}'")
+        mydb.commit()
 
 
 
