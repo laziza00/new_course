@@ -149,12 +149,12 @@ class Project:
         mycursor = mydb.cursor()
         mycursor.execute(f"update kurs_ishi set login = '{new_login}' where login = '{self.login}' and password = '{self.password}'")
         mydb.commit()
-
+        print("You are new login succesfuly changed")
 
 
     def update_password(self):
         new_password = input("Enter new password: ").strip()
-        while self.is_string_empty(new_password) or self.password_exsists(new_password, new_login) or not new_password.isalnum():
+        while self.is_string_empty(new_password) or self.password_exsists(new_password, self.login) or not new_password.isalnum():
             self.clear_everthying()
             print("""Invalid input. Possible errors
                             You have entered an empty password
@@ -163,8 +163,9 @@ class Project:
             new_password = input("Enter new password: ").strip()
 
         mycursor = mydb.cursor()
-        mycursor.execute(f"update kurs_ishi set password = '{new_password}' where password = '{self.password}'")
+        mycursor.execute(f"update kurs_ishi set password = '{new_password}' where password = '{self.password}' and login = '{self.login}'")
         mydb.commit()
+        print("You are new password succesfuly changed")
 
 
 
