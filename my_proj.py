@@ -147,7 +147,23 @@ class Project:
             new_login = input("Login: ").strip().lower()
 
         mycursor = mydb.cursor()
-        mycursor.execute(f"update kurs_ishi set login = '{new_login}' where login = '{self.login}'")
+        mycursor.execute(f"update kurs_ishi set login = '{new_login}' where login = '{self.login}' and password = '{self.password}'")
+        mydb.commit()
+
+
+
+    def update_password(self):
+        new_password = input("Enter new password: ").strip()
+        while self.is_string_empty(new_password) or self.password_exsists(new_password, new_login) or not new_password.isalnum():
+            self.clear_everthying()
+            print("""Invalid input. Possible errors
+                            You have entered an empty password
+                            Password don't match
+                            """)
+            new_password = input("Enter new password: ").strip()
+
+        mycursor = mydb.cursor()
+        mycursor.execute(f"update kurs_ishi set password = '{new_password}' where password = '{self.password}'")
         mydb.commit()
 
 
@@ -156,8 +172,6 @@ class Project:
 
 
 
-    def update_password(self):
-        pass
     def delete_account(self):
         pass
     def log_out(self):
