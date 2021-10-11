@@ -52,12 +52,12 @@ class Project:
             input_age = input("Age: ").strip()
 
         input_login = input("Login: ").strip().lower()
-        while self.is_string_empty(input_login) or not input_login.isalnum() and self.user_exsists(input_login):
+        while self.is_string_empty(input_login) or not input_login.isalnum() or self.user_exsists(input_login):
             self.clear_everthying()
             print("""Invalid input. Posibble errors
-                     You have entered an empty password
+                     You have entered an empty login
                      Pasword don't match
-                """)
+                     """)
             input_login = input("Login: ").strip().lower()
 
         input_password = getpass.getpass("Password: ").strip()
@@ -81,12 +81,41 @@ class Project:
         self.password = input_password
 
     def log_in(self):
+
+        input_login = input("Login: ").strip().lower()
+        while not self.user_exsists(input_login):
+
+            self.clear_everthying()
+            print("""Invalid input. Posibble errors
+                     You have entered an empty login
+                     Login don't match
+                """)
+
+
+        input_password = input("Password: ")
+
+        while not self.password_exsists(input_password, input_login):
+
+            self.clear_everthying()
+            print("""Invalid input. Posibble errors
+                    You have entered an empty login or password
+                    Pasword don't match
+                           """)
+            input_password = input("Password: ")
+
         print("""You are welcome
-                 [1] - Update login
-                 [2] - Update password
-                 [3] - Delete account 
-                 [4] - Log out   
-            """)
+                     [1] - Update login
+                     [2] - Update password
+                     [3] - Delete account
+                     [4] - Log out
+                """)
+
+
+
+
+
+
+
     def update_login(self):
         pass
     def update_password(self):
@@ -118,6 +147,15 @@ class Project:
             return False
 
 
+    def password_exsists(self, input_password, input_login):
+
+        mycursor = mydb.cursor()
+        mycursor.execute(f"select name from kurs_ishi where login = '{input_login}' and password = '{input_password}'")
+        all_data = mycursor.fetchall()
+        if all_data:
+            return True
+        else:
+            return False
 
     def write_database(self):
         mycursor = mydb.cursor()
