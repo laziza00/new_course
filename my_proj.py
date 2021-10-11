@@ -1,3 +1,4 @@
+import getpass
 import os
 
 import mysql.connector
@@ -14,9 +15,9 @@ mydb = mysql.connector.connect(
 
 class Project:
     def __init__(self):
-        self. name = None
-        self. age = None
-        self. login = None
+        self.name = None
+        self.age = None
+        self.login = None
         self.password = None
         self.options = ["1", "2", "3", "4"]
 
@@ -39,7 +40,7 @@ class Project:
         self.clear_everthying()
         input_name = input("Name: ").strip().capitalize()
 
-        while self.is_string_empty(input_name) or not  input_name.isalpha():
+        while self.is_string_empty(input_name) or not input_name.isalpha():
             self.clear_everthying()
             print("Invalid input. Please try again")
             input_name = input("Name: ").strip().capitalize()
@@ -50,16 +51,34 @@ class Project:
             print("Invalid input. Please try again")
             input_age = input("Age: ").strip()
 
-        input_login = input("Login: ")
+        input_login = input("Login: ").strip().lower()
         while self.is_string_empty(input_login) or not input_login.isalnum() and self.user_exsists(input_login):
             self.clear_everthying()
+            print("""Invalid input. Posibble errors
+                     You have entered an empty password
+                     Pasword don't match
+                """)
+            input_login = input("Login: ").strip().lower()
+
+        input_password = getpass.getpass("Password: ").strip()
+        check_password = getpass.getpass("Check password: ").strip()
+
+        while self.is_string_empty(input_password) and input_password != check_password or not input_password.isalnum():
+            self.clear_everthying()
             print("Invalid input. Please try again")
-            input_login = input("Login: ")
+            input_password = getpass.getpass("Password: ").strip()
+            check.password = getpass.getpass("Check password: ").strip()
 
 
 
+        self.add_class(input_name, input_age, input_login, input_password)
 
 
+    def add_class(self, input_name, input_age, input_login, input_password):
+        self.name = input_name
+        self.age = input_age
+        self.login = input_login
+        self.password = input_password
 
     def log_in(self):
         print("""You are welcome
@@ -97,7 +116,8 @@ class Project:
             return True
         else:
             return False
-
+    def write_database(self):
+        pass
 
 
 person = Project()
