@@ -44,7 +44,11 @@ class Project:
             print("Invalid input. Please try again")
             input_name = input("Name: ").strip().capitalize()
 
-        
+        input_age = input("Age: ").strip()
+        while not self.is_string_empty(input_age) or not input_age.isnumeric():
+            print("Invalid input. Please try again")
+            input_age = input("Age: ").strip()
+
 
 
 
