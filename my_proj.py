@@ -72,7 +72,7 @@ class Project:
 
 
         self.add_class(input_name, input_age, input_login, input_password)
-
+        self.write_database()
 
     def add_class(self, input_name, input_age, input_login, input_password):
         self.name = input_name
@@ -106,7 +106,7 @@ class Project:
         os.system("clear")
 
     def is_string_empty(self, str_):
-        return  not bool(str_)
+        return not bool(str_)
 
     def user_exsists(self, input_login):
         mycursor = mydb.cursor()
@@ -116,8 +116,15 @@ class Project:
             return True
         else:
             return False
+
+
+
     def write_database(self):
-        pass
+        mycursor = mydb.cursor()
+        mycursor.execute(f"insert into kurs_ishi  values(null,'{self.name}', '{self.age}', '{self.login}', '{self.password}')")
+        mydb.commit()
+
+
 
 
 person = Project()
