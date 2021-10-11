@@ -68,7 +68,7 @@ class Project:
             self.clear_everthying()
             print("Invalid input. Please try again")
             input_password = getpass.getpass("Password: ").strip()
-            check.password = getpass.getpass("Check password: ").strip()
+            check_password = getpass.getpass("Check password: ").strip()
 
 
         print("Registr is successfuly")
@@ -171,10 +171,13 @@ class Project:
 
 
     def delete_account(self):
+        self.clear_everthying()
         opt = ["1", "2"]
-
         print("Siz rostan ham akkauntingizni o'chirmoqchimisiz?: ")
-        ha_yoq = input("Enter <<<<<[ha] = 1 [yo'q] = 2>>>>>: ")
+        ha_yoq = input("""Enter>>>>>
+                          [ha] = 1 
+                          [yo'q] = 2
+                          >>>>>: """)
         while ha_yoq not in opt:
             self.clear_everthying()
             print("Inavlid input. Please try again")
@@ -185,12 +188,14 @@ class Project:
             mycursor = mydb.cursor()
             mycursor.execute(f" DELETE FROM kurs_ishi WHERE login = '{self.login}'and  password = '{self.password}'")
             mydb.commit()
-            print("You are new account deleted")
+            print("Your account is deleted")
         else:
             print("Sizni loginingiz o'chirilmadi")
             exit()
 
     def log_out(self):
+
+        print("Siz tizimdan chiqdingiz")
         exit()
 
     def initial_message(self):
