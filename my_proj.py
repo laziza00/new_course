@@ -26,7 +26,7 @@ class Project:
             self.registration()
         if reg_log == opt[1]:
             self.log_in()
-            
+
     def log_in(self):
         print("""You are welcome
                  [1] - Update login
@@ -46,7 +46,7 @@ class Project:
         pass
     def initial_message(self):
         print("""Entering the system
-                 [1] - Regitr
+                 [1] - Registr
                  [2] - Login  
               """)
 person = Project()
