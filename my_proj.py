@@ -34,6 +34,23 @@ class Project:
         if reg_log == opt[1]:
             self.log_in()
 
+
+    def registration(self):
+        self.clear_everthying()
+        input_name = input("Name: ").strip().capitalize()
+
+        while not self.is_string_empty(input_name) or not  input_name.isalpha():
+            self.clear_everthying()
+            print("Invalid input. Please try again")
+            input_name = input("Name: ").strip().capitalize()
+
+        
+
+
+
+
+
+
     def log_in(self):
         print("""You are welcome
                  [1] - Update login
@@ -41,8 +58,6 @@ class Project:
                  [3] - Delete account 
                  [4] - Log out   
             """)
-    def registration(self):
-        pass
     def update_login(self):
         pass
     def update_password(self):
@@ -60,6 +75,8 @@ class Project:
 
     def clear_everthying(self):
         os.system("clear")
+    def is_string_empty(self, str_):
+        return bool(str_)
 
 
 
