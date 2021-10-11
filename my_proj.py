@@ -19,8 +19,14 @@ class Project:
         self.options = ["1", "2", "3", "4"]
 
     def entering_the_system(self):
+        opt = ["1", "2"]
         self.initial_message()
         reg_log = input("Enter [1/2]>>>: ")
+        if reg_log == opt[0]:
+            self.registration()
+        if reg_log == opt[1]:
+            self.log_in()
+            
     def log_in(self):
         print("""You are welcome
                  [1] - Update login
