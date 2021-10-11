@@ -1,3 +1,5 @@
+import os
+
 import mysql.connector
 
 mydb = mysql.connector.connect(
@@ -22,6 +24,11 @@ class Project:
         opt = ["1", "2"]
         self.initial_message()
         reg_log = input("Enter [1/2]>>>: ")
+        while reg_log not in opt:
+            self.clear_everthying()
+            print("Invalid input. Please selcet one of options below")
+            reg_log = input("Enter [1/2]>>>: ")
+
         if reg_log == opt[0]:
             self.registration()
         if reg_log == opt[1]:
@@ -49,6 +56,13 @@ class Project:
                  [1] - Registr
                  [2] - Login  
               """)
+
+
+    def clear_everthying(self):
+        os.system("clear")
+
+
+
 person = Project()
 person.entering_the_system()
 
