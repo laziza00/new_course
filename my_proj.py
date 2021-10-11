@@ -28,7 +28,7 @@ class Project:
             self.clear_everthying()
             print("Invalid input. Please selcet one of options below")
             reg_log = input("Enter [1/2]>>>: ")
-
+        self.clear_everthying()
         if reg_log == opt[0]:
             self.registration()
         if reg_log == opt[1]:
@@ -39,16 +39,22 @@ class Project:
         self.clear_everthying()
         input_name = input("Name: ").strip().capitalize()
 
-        while not self.is_string_empty(input_name) or not  input_name.isalpha():
+        while self.is_string_empty(input_name) or not  input_name.isalpha():
             self.clear_everthying()
             print("Invalid input. Please try again")
             input_name = input("Name: ").strip().capitalize()
 
         input_age = input("Age: ").strip()
-        while not self.is_string_empty(input_age) or not input_age.isnumeric():
+        while self.is_string_empty(input_age) or not input_age.isnumeric():
+            self.clear_everthying()
             print("Invalid input. Please try again")
             input_age = input("Age: ").strip()
 
+        input_login = input("Login: ")
+        while self.is_string_empty(input_login) or not input_login.isalnum() and self.user_exsists(input_login):
+            self.clear_everthying()
+            print("Invalid input. Please try again")
+            input_login = input("Login: ")
 
 
 
@@ -79,8 +85,18 @@ class Project:
 
     def clear_everthying(self):
         os.system("clear")
+
     def is_string_empty(self, str_):
-        return bool(str_)
+        return  not bool(str_)
+
+    def user_exsists(self, input_login):
+        mycursor = mydb.cursor()
+        mycursor.execute(f"select login from kurs_ishi where login = '{input_login}'")
+        all_data = mycursor.fetchall()
+        if all_data:
+            return True
+        else:
+            return False
 
 
 
