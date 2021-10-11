@@ -64,7 +64,7 @@ class Project:
         input_password = getpass.getpass("Password: ").strip()
         check_password = getpass.getpass("Check password: ").strip()
 
-        while self.is_string_empty(input_password) and input_password != check_password or not input_password.isalnum():
+        while self.is_string_empty(input_password) or input_password != check_password or not input_password.isalnum():
             self.clear_everthying()
             print("Invalid input. Please try again")
             input_password = getpass.getpass("Password: ").strip()
