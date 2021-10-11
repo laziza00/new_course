@@ -56,7 +56,7 @@ class Project:
             self.clear_everthying()
             print("""Invalid input. Posibble errors
                      You have entered an empty login
-                     Pasword don't match
+                     Login don't match
                      """)
             input_login = input("Login: ").strip().lower()
 
@@ -103,6 +103,11 @@ class Project:
                            """)
             input_password = input("Password: ")
 
+
+        self.login = input_login
+        self.password = input_password
+
+
         print("""You are welcome
                      [1] - Update login
                      [2] - Update password
@@ -110,14 +115,45 @@ class Project:
                      [4] - Log out
                 """)
 
+        log___up = input("Enter>>>: ").strip()
+        while log___up not in self.options:
+            self.clear_everthying()
+            print("Invalid input. Please try again")
+            log___up = input("Enter>>>: ").strip()
 
 
 
 
+
+        if log___up == self.options[0]:
+            self.update_login()
+        if log___up == self.options[1]:
+            self.update_password()
+        if log___up == self.options[2]:
+            self.delete_account()
+        if log___up == self.options[3]:
+            self.log_out()
 
 
     def update_login(self):
-        pass
+
+        new_login = input("Enter new login: ").strip().lower()
+        while self.is_string_empty(new_login) or self.user_exsists(new_login) or not new_login.isalnum():
+            self.clear_everthying()
+            print("""Invalid input. Possible errors
+                     You have entered an empty login
+                     Login don't match
+                     """)
+            new_login = input("Login: ").strip().lower()
+
+
+
+
+
+
+
+
+
     def update_password(self):
         pass
     def delete_account(self):
