@@ -71,7 +71,7 @@ class Project:
             check.password = getpass.getpass("Check password: ").strip()
 
 
-
+        print("Registr is successfuly")
         self.add_class(input_name, input_age, input_login, input_password)
         self.write_database()
 
@@ -174,13 +174,18 @@ class Project:
         opt = ["1", "2"]
 
         print("Siz rostan ham akkauntingizni o'chirmoqchimisiz?: ")
-        ha_yoq = input("Enter <<<<<[1/2]>>>>>: ")
+        ha_yoq = input("Enter <<<<<[ha] = 1 [yo'q] = 2>>>>>: ")
         while ha_yoq not in opt:
             self.clear_everthying()
             print("Inavlid input. Please try again")
-            ha_yoq = input("Enter <<<<<[1/2]>>>>>: ")
+            ha_yoq = input("Enter <<<<<[ha] = 1 [yo'q] = 2>>>>>: ")
+
         if ha_yoq== opt[0]:
-            pass
+
+            mycursor = mydb.cursor()
+            mycursor.execute(f" DELETE FROM kurs_ishi WHERE login = '{self.login}'and  password = '{self.password}'")
+            mydb.commit()
+            print("You are new account deleted")
         else:
             print("Sizni loginingiz o'chirilmadi")
             exit()
