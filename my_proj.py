@@ -24,11 +24,12 @@ class Project:
     def entering_the_system(self):
         opt = ["1", "2"]
         self.initial_message()
-        reg_log = input("Enter [1/2]>>>: ")
+        reg_log = input("Enter <<<<[1/2]>>>: ")
         while reg_log not in opt:
             self.clear_everthying()
             print("Invalid input. Please selcet one of options below")
             reg_log = input("Enter [1/2]>>>: ")
+
         self.clear_everthying()
         if reg_log == opt[0]:
             self.registration()
@@ -136,7 +137,7 @@ class Project:
 
 
     def update_login(self):
-
+        self.clear_everthying()
         new_login = input("Enter new login: ").strip().lower()
         while self.is_string_empty(new_login) or self.user_exsists(new_login) or not new_login.isalnum():
             self.clear_everthying()
@@ -153,6 +154,7 @@ class Project:
 
 
     def update_password(self):
+        self.clear_everthying()
         new_password = input("Enter new password: ").strip()
         while self.is_string_empty(new_password) or self.password_exsists(new_password, self.login) or not new_password.isalnum():
             self.clear_everthying()
@@ -168,15 +170,24 @@ class Project:
         print("You are new password succesfuly changed")
 
 
-
-
-
-
-
     def delete_account(self):
-        pass
+        opt = ["1", "2"]
+
+        print("Siz rostan ham akkauntingizni o'chirmoqchimisiz?: ")
+        ha_yoq = input("Enter <<<<<[1/2]>>>>>: ")
+        while ha_yoq not in opt:
+            self.clear_everthying()
+            print("Inavlid input. Please try again")
+            ha_yoq = input("Enter <<<<<[1/2]>>>>>: ")
+        if ha_yoq== opt[0]:
+            pass
+        else:
+            print("Sizni loginingiz o'chirilmadi")
+            exit()
+
     def log_out(self):
-        pass
+        exit()
+
     def initial_message(self):
         print("""Entering the system
                  [1] - Registr
